@@ -1,5 +1,5 @@
 #Don't change!
-version : "3"
+version: "3"
 
 #Max 5 rows
 gui-border-rows: 2
@@ -34,6 +34,7 @@ wall-items:
     display-material: EMERALD_BLOCK
     material: EMERALD_BLOCK
     displayname: '&aEmerald'
+    category: false
     lore-with-perm:
       - '&bThis will make your wall'
       - '&bto emerald blocks'
@@ -47,6 +48,7 @@ wall-items:
     display-material: SPAWNER
     material: SPAWNER
     displayname: '&cSpawner'
+    category: false
     lore-with-perm:
       - '&bYour wall will '
       - '&bconsist of mysterious'
@@ -58,6 +60,7 @@ wall-items:
     display-material: BARRIER
     material: AIR
     displayname: '&cAir'
+    category: false
     lore-with-perm:
       - '&bYour wall will disappear'
     lore-without-perm:
@@ -68,20 +71,21 @@ border-items:
     display-material: EMERALD_BLOCK
     material: EMERALD_BLOCK
     displayname: '&aEmerald'
+    category: false
     lore-with-perm:
       - '&bThis will make your edge'
       - '&bto emerald blocks'
     lore-without-perm:
       - "&cYou don't have permission for this border"
   2:
-    permission: border.spawner
-    display-material: SPAWNER
-    material: SPAWNER
-    displayname: '&cSpawner'
+    permission: border.wood
+    display-material: OAK_PLANKS
+    material: OAK_PLANKS
+    displayname: 'Oak Planks'
+    category: true # if true - the displayname will be the category name
     lore-with-perm:
       - '&bYour edge will '
-      - '&bconsist of mysterious'
-      - '&cspawners'
+      - '&bbe of strong wood'
     lore-without-perm:
       - "&cYou don't have permission for this border"
   3:
@@ -89,7 +93,41 @@ border-items:
     display-material: BARRIER
     material: AIR
     displayname: '&cAir'
+    category: default
     lore-with-perm:
       - '&bYour edge will disappear'
     lore-without-perm:
       - "&cYou don't have permission for this border"
+categories:
+  OAK_PLANKS:
+    1:
+      permission: border.oakwood
+      display-material: OAK_PLANKS
+      material: OAK_PLANKS
+      displayname: '&cOak Planks'
+      lore-with-perm:
+        - '&bYour edge will '
+        - '&bbe of strong wood'
+      lore-without-perm:
+        - "&cYou don't have permission for this border"
+    2:
+      permission: border.sprucewood
+      display-material: SPRUCE_PLANKS
+      material: SPRUCE_PLANKS
+      displayname: '&cSpruce Planks'
+      lore-with-perm:
+        - '&bYour edge will '
+        - '&bbe of strong wood'
+      lore-without-perm:
+        - "&cYou don't have permission for this border"
+    3:
+      permission: border.junglewood
+      display-material: JUNGLE_PLANKS
+      material: JUGLE_PLANKS
+      displayname: '&cJungle Planks'
+      category: wood
+      lore-with-perm:
+        - '&bYour edge will '
+        - '&bbe of exotic wood'
+      lore-without-perm:
+        - "&cYou don't have permission for this border"

@@ -1,9 +1,3 @@
-/*
- * Author: Nononitas
- * Discord: Nononitas#9256
- * Changes of the code are not allowed!
- */
-
 package de.nononitas.plotborder.util;
 
 

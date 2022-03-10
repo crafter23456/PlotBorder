@@ -13,32 +13,33 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.List;
 import java.util.Objects;
 
-public class Gui {
-    public static void openGui(Type guiType, Player p, int page) {
-        String type = guiType.getType();
+public class categoryGui {
+    public static void openGui(Player p, int page) {
         FileConfiguration config = PlotBorder.getPlugin().getConfig();
 
-        String title = PlotBorder.color(config.getString("gui-" + type + "-title"));
-        int invSize = config.getInt("gui-" + type + "-rows") * 9;
-        Inventory inv = Bukkit.createInventory(null, (config.getInt("gui-" + type + "-rows") + 1) * 9, title);
+        //String title = PlotBorder.color(config.getString("gui-" + type + "-title"));
+        String title = "Custom";
+        //int invSize = config.getInt("gui-" + type + "-rows") * 9;
+        int invSize = 4 * 9;
+        //Inventory inv = Bukkit.createInventory(null, (config.getInt("gui-" + type + "-rows") + 1) * 9, title);
+        Inventory inv = Bukkit.createInventory(null, (5 * 9), title);
 
         int index = 0;
         int startSlot = page * invSize;
-        int slot = 0;
-        for (String section : config.getConfigurationSection(type + "-items").getKeys(false)) {
-            if(slot >= startSlot) {
+        int categorySlot = 0;
+        for (String categorySection : config.getConfigurationSection("categories.OAK_PLANKS").getKeys(false)) {
+            if(categorySlot >= startSlot) {
                 if(index < invSize) {
 
+                    categorySection = "categories.OAK_PLANKS." + categorySection;
 
-                    section = type + "-items." + section;
-
-                    String material = config.getString(section + ".display-material");
-                    String displayname = config.getString(section + ".displayname");
+                    String material = config.getString(categorySection + ".display-material");
+                    String displayname = config.getString(categorySection + ".displayname");
                     List<String> lore;
-                    if(p.hasPermission(Objects.requireNonNull(config.getString(section + ".permission")))) {
-                        lore = config.getStringList(section + ".lore-with-perm");
+                    if(p.hasPermission(Objects.requireNonNull(config.getString(categorySection + ".permission")))) {
+                        lore = config.getStringList(categorySection + ".lore-with-perm");
                     } else {
-                        lore = config.getStringList(section + ".lore-without-perm");
+                        lore = config.getStringList(categorySection + ".lore-without-perm");
                     }
 
 
@@ -48,7 +49,7 @@ public class Gui {
                     index++;
                 } else break;
             }
-            slot++;
+            categorySlot++;
 
         }
 
@@ -60,7 +61,7 @@ public class Gui {
         ItemStack arrowRight = Heads.WHITE_ARROW_RIGHT.getItemStack();
         ItemStack arrowLeft = Heads.WHITE_ARROW_LEFT.getItemStack();
         SkullMeta meta;
-        if(PlotBorder.getPlugin().getConfig().getConfigurationSection(type + "-items").getKeys(false).size() - 1 > slot) {
+        if(PlotBorder.getPlugin().getConfig().getConfigurationSection("categories.OAK_PLANKS").getKeys(false).size() - 1 > categorySlot) {
             meta = (SkullMeta) arrowRight.getItemMeta();
             meta.setDisplayName(PlotBorder.getColoredConfigString("page") + " " + (page + 2));
             arrowRight.setItemMeta(meta);
